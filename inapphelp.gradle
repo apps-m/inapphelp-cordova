@@ -1,0 +1,12 @@
+dependencies {
+    compile "ru.apps-m:inapphelp:0.0.7";
+}
+
+android {
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+}
+

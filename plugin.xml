@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2015 Inapphelp (http://inapphelp.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+xmlns:android="http://schemas.android.com/apk/res/android"
+           id="ru.apps-m.inapphelp"
+      version="1.3.2-dev">
+    <name>Inapphelp</name>
+    <description>Inapphelp Plugin</description>
+    <license>MIT</license>
+    <keywords>Inapphelp,helpdesk,faq</keywords>
+    <repo>https://github.com/apps-m/inapphelp-cordova.git</repo>
+    <issue>https://github.com/apps-m/inapphelp-cordova/issues</issue>
+
+    <js-module src="www/inapphelp.js" name="Inapphelp">
+        <clobbers target="window.Inapphelp" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Inapphelp" >
+                <param name="android-package" value="ru.appsm.inapphelp.CordovaWrapper"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <framework src="inapphelp.gradle" custom="true" type="gradleReference" />
+
+        <source-file src="src/android/CordovaWrapper.java" target-dir="src/ru/appsm/inapphelp" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Inapphelp">
+                <param name="ios-package" value="CDVInapphelp" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <framework src="CoreGraphics.framework" weak="true" />
+        <framework src="Foundation.framework" weak="true" />
+        <framework src="MobileCoreServices.framework" weak="true" />
+        <framework src="QuartzCore.framework" weak="true" />
+        <framework src="Security.framework" weak="true" />
+        <framework src="SystemConfiguration.framework" weak="true" />
+        <framework src="UIKit.framework" weak="true" />
+        <framework src="AudioToolbox.framework" weak="true" />
+        <framework src="MessageUI.framework" weak="true" />
+
+        <header-file src="src/ios/CDVInapphelp.h" />
+        <source-file src="src/ios/CDVInapphelp.m" />
+
+        <!--find JCNotificationBannerPresenter -type f -name "*.h" | awk '{a = "asd"; print "<header-file src=""\"src/ios/"$1"\"/>"}'-->
+
+        <header-file src="src/ios/InapphelpSDK/Core/IAHAppearance.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHAttachment.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHDeskCase.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHDeskKBItem.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHGear.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHHelpDesk.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHInapphelpGear.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHKBItem.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHKBSource.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHTicket.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHTicketReply.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHTicketSource.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHUpdate.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/IAHUser.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/UIColor+Extended.h"/>
+        <header-file src="src/ios/InapphelpSDK/Core/UIImage+Extended.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHActivityIndicatorView.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHArticleDetailViewController.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHAttachmentsListViewController.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHAttachmentsViewController.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHBubbleLeftArrow.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHBubbleRightArrow.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHButton.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHChatBubbleLeft.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHChatBubbleRight.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHGroupViewController.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHGrowingTextView.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHIssueDetailViewController.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHLabel.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHMainListViewController.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHNewIssueAttachmentViewController.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHNewIssueViewController.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHNewIssueViewControlleriPad.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHReportIssueCell.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHSmallLabel.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHTableView.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHTableViewCell.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHTableViewController.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHTableViewHeaderCell.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHTextViewInternal.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHTicketDetailViewControlleriPad.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHUserDetailsViewController.h"/>
+        <header-file src="src/ios/InapphelpSDK/UI/IAHViewController.h"/>
+        <header-file src="src/ios/InapphelpSDK/Util/IAHUtility.h"/>
+
+        <source-file src="src/ios/InapphelpSDK/Core/IAHAppearance.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHAttachment.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHDeskCase.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHDeskKBItem.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHGear.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHHelpDesk.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHInapphelpGear.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHKBItem.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHKBSource.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHTicket.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHTicketReply.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHTicketSource.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHUpdate.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/IAHUser.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/UIColor+Extended.m"/>
+        <source-file src="src/ios/InapphelpSDK/Core/UIImage+Extended.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHActivityIndicatorView.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHArticleDetailViewController.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHAttachmentsListViewController.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHAttachmentsViewController.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHBubbleLeftArrow.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHBubbleRightArrow.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHButton.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHChatBubbleLeft.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHChatBubbleRight.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHGroupViewController.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHGrowingTextView.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHIssueDetailViewController.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHLabel.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHMainListViewController.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHNewIssueAttachmentViewController.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHNewIssueViewController.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHNewIssueViewControlleriPad.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHReportIssueCell.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHSmallLabel.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHTableView.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHTableViewCell.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHTableViewController.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHTableViewHeaderCell.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHTextViewInternal.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHTicketDetailViewControlleriPad.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHUserDetailsViewController.m"/>
+        <source-file src="src/ios/InapphelpSDK/UI/IAHViewController.m"/>
+        <source-file src="src/ios/InapphelpSDK/Util/IAHUtility.m"/>
+
+        <resource-file src="src/ios/InapphelpSDK/Resources/attach.png" />
+        <resource-file src="src/ios/InapphelpSDK/Resources/attach@2x.png" />
+        <resource-file src="src/ios/InapphelpSDK/Resources/InapphelpStoryboard-iPad.storyboard" />
+        <resource-file src="src/ios/InapphelpSDK/Resources/InapphelpStoryboard.storyboard" />
+
+
+
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFHTTPRequestOperation.h"/>
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.h"/>
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFHTTPSessionManager.h"/>
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFNetworking.h"/>
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h"/>
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFSecurityPolicy.h"/>
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFURLConnectionOperation.h"/>
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFURLRequestSerialization.h"/>
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFURLResponseSerialization.h"/>
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFURLSessionManager.h"/>
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/AFNetworkActivityIndicatorManager.h"/>
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h"/>
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIAlertView+AFNetworking.h"/>
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIButton+AFNetworking.h"/>
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.h"/>
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIKit+AFNetworking.h"/>
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIProgressView+AFNetworking.h"/>
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIRefreshControl+AFNetworking.h"/>
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.h"/>
+
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFHTTPRequestOperation.m"/>
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.m"/>
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFHTTPSessionManager.m"/>
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFNetworkReachabilityManager.m"/>
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFSecurityPolicy.m"/>
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFURLConnectionOperation.m"/>
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFURLRequestSerialization.m"/>
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFURLResponseSerialization.m"/>
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFURLSessionManager.m"/>
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m"/>
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.m"/>
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIAlertView+AFNetworking.m"/>
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIButton+AFNetworking.m"/>
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.m"/>
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIProgressView+AFNetworking.m"/>
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIRefreshControl+AFNetworking.m"/>
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.m"/>
+
+
+
+        <header-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBanner.h"/>
+        <header-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerPresenter.h"/>
+        <header-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerPresenter_Private.h"/>
+        <header-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerPresenterIOS7Style.h"/>
+        <header-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerPresenterIOSStyle.h"/>
+        <header-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerPresenterSmokeStyle.h"/>
+        <header-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerView.h"/>
+        <header-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerViewController.h"/>
+        <header-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerViewIOS7Style.h"/>
+        <header-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerViewIOSStyle.h"/>
+        <header-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerWindow.h"/>
+        <header-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationCenter.h"/>
+
+        <source-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBanner.m"/>
+        <source-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerPresenter.m"/>
+        <source-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerPresenterIOS7Style.m"/>
+        <source-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerPresenterIOSStyle.m"/>
+        <source-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerPresenterSmokeStyle.m"/>
+        <source-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerView.m"/>
+        <source-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerViewController.m"/>
+        <source-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerViewIOS7Style.m"/>
+        <source-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerViewIOSStyle.m"/>
+        <source-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationBannerWindow.m"/>
+        <source-file src="src/ios/JCNotificationBannerPresenter/Library/JCNotificationCenter.m"/>
+
+
+    </platform>
+</plugin>
