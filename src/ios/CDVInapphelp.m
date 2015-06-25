@@ -48,8 +48,7 @@
 
 - (void)handlePushNotification:(CDVInvokedUrlCommand*)command {
     NSDictionary* push = [command.arguments objectAtIndex:0];
-    BOOL foreground = [command.arguments objectAtIndex:1];
-    NSLog(foreground ? @"Yes foreground" : @"No foreground");
+    BOOL foreground = ((__bridge CFBooleanRef)([command.arguments objectAtIndex:1]) == kCFBooleanTrue);
     [[IAHHelpDesk instance] handlePush:push withViewController:[[[[UIApplication sharedApplication] delegate] window] rootViewController] launchedFromPush:!foreground];
 };
 

@@ -32,6 +32,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <repo>https://github.com/apps-m/inapphelp-cordova.git</repo>
     <issue>https://github.com/apps-m/inapphelp-cordova/issues</issue>
 
+    <engines>
+        <engine name="cordova-android" version=">=4.0.0-dev" />
+    </engines>
+
     <js-module src="www/inapphelp.js" name="Inapphelp">
         <clobbers target="window.Inapphelp" />
     </js-module>
