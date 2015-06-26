@@ -1,5 +1,5 @@
 dependencies {
-    compile "ru.apps-m:inapphelp:0.0.7";
+    compile "ru.apps-m:inapphelp:0.2.0"
 }
 
 android {

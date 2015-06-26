@@ -44,15 +44,36 @@
     return timeString;
 }
 
-+ (NSString*)deviceInformation
++ (NSMutableArray*)deviceInformation
 {
-    NSString* deviceModel = [[UIDevice currentDevice] model];
-    NSString* osVersion = [[UIDevice currentDevice] systemVersion];
-    NSString* bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
-    NSString* bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     
-    NSString* deviceInformation = [NSString stringWithFormat:@"Device:%@,iOS:%@,App information:%@,Version:%@", deviceModel, osVersion, bundleName, bundleVersion];
+    NSMutableArray* deviceInfo = [[NSMutableArray alloc] init];
     
-    return deviceInformation;
+    [deviceInfo addObject:@{@"k":@"Application id", @"v": [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"], @"t":@"Application"}];
+    [deviceInfo addObject:@{@"k":@"Application version", @"v": [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"], @"t":@"Application"}];
+    
+    [deviceInfo addObject:@{@"k":@"Device", @"v": [[UIDevice currentDevice] model], @"t":@"Device"}];
+    [deviceInfo addObject:@{@"k":@"OS", @"v": [[UIDevice currentDevice] systemVersion], @"t":@"Device"}];
+    [deviceInfo addObject:@{@"k":@"Language", @"v": [[NSLocale preferredLanguages] objectAtIndex:0], @"t":@"Device"}];
+    [deviceInfo addObject:@{@"k":@"Free space", @"v": [self getFreeSpace], @"t":@"Device"}];
+
+    return deviceInfo;
+}
+
++ (NSString*) getFreeSpace {
+    NSString* freeSpace = @"Unknown";
+    NSError *error = nil;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: &error];
+    
+    if (dictionary) {
+        NSNumber *fileSystemFreeSizeInBytes = [dictionary objectForKey: NSFileSystemFreeSize];
+        
+        int mb = (int)([fileSystemFreeSizeInBytes longLongValue]/(1024 * 1024));
+        freeSpace  = [NSString stringWithFormat:@"%.02f GB", ((float) mb)/1024.f];
+    } else {
+        //Handle error
+    }  
+    return freeSpace;
 }
 @end
