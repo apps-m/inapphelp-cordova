@@ -53,6 +53,8 @@ var Inapphelp = {
      *
      */
     setUserId: function (userId) {
+        if (typeof userId === "number" && !isNaN(userId))
+            userId = ""  + userId;
         if (userId && typeof userId === "string") {
             cordova.exec (null, null, "Inapphelp", "setUserId", [userId]);
         }
