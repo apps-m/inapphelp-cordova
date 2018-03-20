@@ -1,0 +1,36 @@
+{
+  "name": "inapphelp-cordova",
+  "version": "0.1.0",
+  "description": "Inapphelp Plugin",
+  "cordova": {
+    "id": "ru.apps-m.inapphelp",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apps-m/inapphelp-cordova.git"
+  },
+  "keywords": [
+    "Inapphelp",
+    "helpdesk",
+    "faq",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "engines": [
+    {
+      "name": "cordova-android",
+      "version": ">=4.0.0-dev"
+    }
+  ],
+  "author": "Mnill",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apps-m/inapphelp-cordova/issues"
+  },
+  "homepage": "https://github.com/apps-m/inapphelp-cordova#readme"
+}
